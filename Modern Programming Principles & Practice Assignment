@@ -1,3 +1,15 @@
+Hello+name:
+
+#include <iostream>
+#include <string>
+using namespace std; 
+int main(){
+    string name; 
+    cin>> name;
+    cout<<"Hello "<<name<<" !";
+    return 0;
+}
+
 1. Write a C++ program to perform various arithmetic operations, including addition, subtraction, multiplication, and division. The program should take two numbers as input from the user using the keyboard and display the result of each operation:
 
 
@@ -24,7 +36,7 @@ void division(double a, double b) {
     if (b != 0) {
         cout << "Division: " << (a / b) << endl;
     } else {
-        cout << "Division: Cannot divide by zero!" << endl;
+        cout << "Division:" << endl;
     }
 }
 
@@ -200,13 +212,3 @@ int main() {
 
 
 
-6. Write a C++ program that demonstrates the use of the following keywords:
--break: Exit a loop when a specific condition is met.
--continue: Skip an iteration in a loop when a condition is met.
--goto: Jump to a specific labeled section of the program to demonstrate control transfer.
-
-The program should display the numbers 1 to 10 and perform the following:
-1. Use a for loop and break the loop when the number reaches 6.
-2. Use another for loop and continue the iteration when the number is even.
-3. Use the goto keyword to iterate a few times and print the values until a condition is met (i.e., when the
-variable reaches 3).
