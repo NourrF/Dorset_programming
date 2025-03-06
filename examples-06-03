@@ -1,0 +1,53 @@
+ page 6 : 
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  int arr[] = {10, 20, 30, 40, 50};
+  cout << "Size of entire array: " << sizeof(arr) << "bytes" << endl;
+  cout << "Size of one element: " << sizeof(arr[0]) << "bytes" << endl;
+
+  int length = sizeof(arr) / sizeof(arr[0]);
+  cout << "Number of elements in array: " << length
+<< endl;
+  return 0;
+}
+
+
+ page 9 :
+
+#include <iostream>
+using namespace std;
+
+int fibonacci(int n) {
+    if (n <= 0) {
+        return n;
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2); 
+    }
+}
+int main() {
+    int num;
+    cout << "Enter a number: ";
+    cin >> num;
+
+    cout << "Fibonacci(" << num << ") = " << fibonacci(num) << endl;
+
+    return 0;
+}
+
+
+page 24: 
+
+#include <iostream>
+using namespace std;
+
+int num = 10; // Global variable
+int main() {
+   int num = 20; // Local variable
+   cout << "Local num: " << num << endl; // Output: 20
+   cout << "Global num: " << ::num << endl; // Output: 10
+   return 0;
+}
+
