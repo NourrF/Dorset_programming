@@ -1,0 +1,106 @@
+#include <iostream>
+using namespace std;
+
+const int MAX_SIZE = 100;
+
+void displayArray(int arr[], int size) {
+    if (size == 0) {
+        cout << "Array is empty.\n";
+        return;
+    }
+    cout << "Elements: ";
+    for (int i = 0; i < size; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << "\n";
+}
+
+void insertElement(int arr[], int &size, int element, int position) {
+    if (size >= MAX_SIZE || position < 0 || position > size) {
+        cout << "Invalid position.\n";
+        return;
+    }
+    for (int i = size; i > position; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[position] = element;
+    size++;
+    cout << "Inserted successfully.\n";
+}
+
+void deleteElement(int arr[], int &size, int position) {
+    if (position < 0 || position >= size) {
+        cout << "Invalid position.\n";
+        return;
+    }
+    for (int i = position; i < size - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    size--;
+    cout << "Deleted successfully.\n";
+}
+
+void searchElement(int arr[], int size, int element) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == element) {
+            cout << "Found at index " << i << "\n";
+            return;
+        }
+    }
+    cout << "Not found.\n";
+}
+
+void updateElement(int arr[], int size, int position, int newValue) {
+    if (position < 0 || position >= size) {
+        cout << "Invalid position.\n";
+        return;
+    }
+    arr[position] = newValue;
+    cout << "Updated successfully.\n";
+}
+
+int main() {
+    int arr[MAX_SIZE], size = 0, choice;
+
+    do {
+        cout << "\nMenu:\n";
+        cout << "1. Display\n2. Insert\n3. Delete\n4. Search\n5. Update\n6. Exit\n";
+        cout << "Choice: ";
+        cin >> choice;
+
+        int element, position;
+        
+        switch (choice) {
+            case 1:
+                displayArray(arr, size);
+                break;
+            case 2:
+                cout << "Enter value and position: ";
+                cin >> element >> position;
+                insertElement(arr, size, element, position);
+                break;
+            case 3:
+                cout << "Enter position: ";
+                cin >> position;
+                deleteElement(arr, size, position);
+                break;
+            case 4:
+                cout << "Enter value to search: ";
+                cin >> element;
+                searchElement(arr, size, element);
+                break;
+            case 5:
+                cout << "Enter position and new value: ";
+                cin >> position >> element;
+                updateElement(arr, size, position, element);
+                break;
+            case 6:
+                cout << "Exiting...\n";
+                break;
+            default:
+                cout << "Invalid choice.\n";
+        }
+    } while (choice != 6);
+
+    return 0;
+}
