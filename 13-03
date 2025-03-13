@@ -1,0 +1,128 @@
+#include <iostream>
+using namespace std;
+
+// 1)
+class Counter {
+    int value;
+public:
+    Counter(int v = 0) : value(v) {}
+    void display() { cout << "Counter: " << value << endl; }
+    Counter operator++() { ++value; return *this; }  
+    Counter operator++(int) { Counter temp = *this; value++; return temp; }  
+};
+
+// 2)
+class Complex {
+    int real, imag;
+public:
+    Complex(int r = 0, int i = 0) : real(r), imag(i) {}
+    Complex operator+(const Complex &c) { return Complex(real + c.real, imag + c.imag); }
+    void display() { cout << real << " + " << imag << "i" << endl; }
+};
+
+// 3)
+class Point {
+    int x, y;
+public:
+    Point(int x = 0, int y = 0) : x(x), y(y) {}
+    bool operator==(const Point &point) { return (x == point.x && y == point.y); }
+};
+
+// 4)
+class Array {
+    int arr[5];
+public:
+    Array() { for (int i = 0; i < 5; i++) arr[i] = i * 10; }
+    int operator[](int index) {
+        if (index < 0 || index >= 5) {
+            cout << "no!" << endl;
+            return -1;
+        }
+        return arr[index];
+    }
+};
+
+// 5)
+class Multiply {
+public:
+    int operator()(int x, int y) { return x * y; }
+};
+
+// 6)
+class Test {
+public:
+    void show() { cout << "Insid Test Class" << endl; }
+};
+class SmartPointer {
+    Test *ptr;
+public:
+    SmartPointer() { ptr = new Test(); }
+    ~SmartPointer() { delete ptr; }
+    Test* operator->() { return ptr; }
+};
+
+// 7)
+
+class Vector {
+    int u, v;
+public:
+    Vector(int u = 0, int v = 0) : u(u), v(v) {}
+    Vector operator-(const Vector &vect) { return Vector(u - vect.u, v - vect.v); }
+    void display() { cout << "Vector: (" << u << ", " << v << ")" << endl; }
+};
+
+
+// 8)
+
+class Student {
+    string name;
+    int grade;
+public:
+    friend ostream& operator<<(ostream &out, const Student &s) {
+    out << "Name: " << s.name << ", Grade: " << s.grade;
+    return out;
+    }
+    friend istream& operator>>(istream &in, Student &s) {
+        cout << "Enter name: "; 
+        in >> s.name;
+        cout << "Enter grade: "; 
+        in >> s.grade;
+        return in;
+    }
+};
+
+
+int main() {
+    Counter c;
+    c++;
+    c.display();
+    ++c;
+    c.display();
+
+    Complex c1(1, 2), c2(4, 5);
+    Complex c3 = c1 + c2;
+    c3.display();
+
+    Point p1(1, 2), p2(2, 3);
+    cout << (p1 == p2 ? "Points are equal" : "Points are not equal") << endl;
+
+    Array arr;
+    cout << "Element at index 1: " << arr[1] << endl;
+    cout << "Element at index 4: " << arr[4] << endl;
+
+    Multiply m;
+    cout << "Multiplication: " << m(4,5 ) << endl;
+
+    SmartPointer sp;
+    sp->show();
+
+    Vector v1(3, 7), v2(2, 4);
+    Vector v3 = v1 - v2;
+    v3.display();
+
+    Student s;
+    cin >> s;
+    cout << s << endl;
+
+    return 0;
+}
